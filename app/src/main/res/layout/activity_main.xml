@@ -4,54 +4,106 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FF4D61C5"
     tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/ipAddress"
+        android:layout_width="230dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginRight="60dp"
+        android:background="#FFF1F8F7"
+        android:ems="10"
+        android:hapticFeedbackEnabled="false"
+        android:hint="Please Enter Your port Address"
+        android:inputType="textPersonName"
+        android:lineSpacingExtra="10sp"
+
+        android:textColorLink="#4D61C5"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.722"
+        app:layout_constraintStart_toEndOf="@+id/port"
+        app:layout_constraintTop_toBottomOf="@+id/ipAddress2" />
+
 
     <Button
         android:id="@+id/connect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="303dp"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="128dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="10dp"
+        android:autoText="true"
+        android:background="#4CAF50"
+        android:capitalize="sentences"
+        android:clickable="false"
+        android:lineSpacingExtra="12sp"
         android:text="Connect"
+        android:textColorLink="@color/colorPrimary"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ipAddress"
+        app:layout_constraintVertical_bias="0.804" />
 
     <TextView
         android:id="@+id/ip"
-        android:layout_width="98dp"
-        android:layout_height="36dp"
-        android:text="IP:"
-        tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="99dp" />
+        android:layout_width="68dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="108dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="   IP:"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/ipAddress2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/port"
-        android:layout_width="98dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="43dp"
-        android:layout_marginLeft="43dp"
-        android:text="Port:"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="191dp" />
-
-    <EditText
-        android:id="@+id/port"
-        android:layout_width="238dp"
+        android:layout_width="68dp"
         android:layout_height="42dp"
-        android:ems="10"
-        android:hint="Please Enter Your Port"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="157dp"
-        tools:layout_editor_absoluteY="192dp" />
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="84dp"
+        android:scrollbarSize="5dp"
+        android:text="Port:"
+        android:textIsSelectable="true"
+        android:textSize="24sp"
+        android:verticalScrollbarPosition="defaultPosition"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ip" />
 
     <EditText
         android:id="@+id/ipAddress2"
-        android:layout_width="238dp"
+        android:layout_width="230dp"
         android:layout_height="42dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="108dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginRight="60dp"
         android:ems="10"
+        android:background="#FFF1F8F7"
         android:hint="Please Enter Your IP Address"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="154dp"
-        tools:layout_editor_absoluteY="99dp" />
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ip"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
