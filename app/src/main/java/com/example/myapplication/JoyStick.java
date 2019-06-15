@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -25,6 +26,7 @@ public class JoyStick extends AppCompatActivity {
     double y;
     JoyStickClass js;
     Socket socket;
+    DataOutputStream stream;
 
     @SuppressLint("ClickableViewAccessibility")
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +41,11 @@ public class JoyStick extends AppCompatActivity {
 
         try {
             InetAddress serverAddr = InetAddress.getByName(ip);
-             this.socket = new Socket(serverAddr,Integer.parseInt(port));
-
+            this.socket = new Socket(serverAddr,Integer.parseInt(port));
+            this.stream = new DataOutputStream(socket.getOutputStream());
         } catch (Exception e) {
             Log.e("TCP", "C: Error", e);
         }
-
 
         layout_joystick = (RelativeLayout)findViewById(R.id.layout_joystick);
 
@@ -63,7 +64,6 @@ public class JoyStick extends AppCompatActivity {
                         || arg1.getAction() == MotionEvent.ACTION_MOVE) {
                     x = js.getX();
                     y = js.getY();
-
                     int direction = js.get8Direction();
                     if(direction == JoyStickClass.STICK_UP) {
                         textView5.setText("Direction : Up");
@@ -85,6 +85,11 @@ public class JoyStick extends AppCompatActivity {
                         textView5.setText("Direction : Center");
                     }
                 } else if(arg1.getAction() == MotionEvent.ACTION_UP) {
+                    try {
+                        stream.writeUTF("set /controls/flight/aileron " + x + "\r\n");
+                        stream.writeUTF("set /controls/flight/elevator " + y + "\r\n");
+                    }
+                    catch (IOException e){}
                 }
                 return true;
             }

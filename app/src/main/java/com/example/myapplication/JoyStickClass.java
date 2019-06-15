@@ -41,12 +41,9 @@ public class JoyStickClass {
 
     public JoyStickClass (Context context, ViewGroup layout, int stick_res_id) {
         mContext = context;
-
         stick = BitmapFactory.decodeResource(mContext.getResources(), stick_res_id);
-
         stick_width = stick.getWidth();
         stick_height = stick.getHeight();
-
         draw = new DrawCanvas(mContext);
         paint = new Paint();
         mLayout = layout;

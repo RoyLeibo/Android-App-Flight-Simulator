@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         //joysticMoveFunc(){
             // the value is missing
         try {
+            stream = new DataOutputStream(socket.getOutputStream());
             String aileronCommand = "set /controls/flight/aileron " + "\r\n";
             String elevatorCommand = "set /controls/flight/elevator " + "\r\n";
             stream.writeUTF(aileronCommand);
