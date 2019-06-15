@@ -23,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
         Button connectButton = findViewById(R.id.connect);
         connectButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
-                EditText ip = findViewById(R.id.EditText_ipAddress);
-                EditText port = findViewById(R.id.EditText_port);
+                EditText ip = findViewById(R.id.ipAddress2);
+                EditText port = findViewById(R.id.ipAddress);
                 try {
                     socket = new Socket(ip.getText().toString(), Integer.parseInt(port.getText().toString()));
                     stream = new DataOutputStream(socket.getOutputStream());
