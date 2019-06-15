@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -17,7 +18,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 
-public class JoyStick extends AppCompatActivity {
+public class JoyStick extends AppCompatActivity, AsyncTask<String, Void, Void> {
 
     RelativeLayout layout_joystick;
     ImageView image_joystick, image_border;
@@ -82,6 +83,11 @@ public class JoyStick extends AppCompatActivity {
         } catch (IOException e){
             Log.e("TCP", "C: Error closing the socket", e);
         }
+    }
+
+    @Override
+    protected Void doInBackground(String... params) {
+
     }
 
 }
