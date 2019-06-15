@@ -21,7 +21,6 @@ public class JoyStick extends AppCompatActivity {
 
     RelativeLayout layout_joystick;
     ImageView image_joystick, image_border;
-    TextView textView1, textView2, textView3, textView4, textView5;
     double x;
     double y;
     JoyStickClass js;
@@ -41,7 +40,7 @@ public class JoyStick extends AppCompatActivity {
 
         try {
             InetAddress serverAddr = InetAddress.getByName(ip);
-            this.socket = new Socket(serverAddr,Integer.parseInt(port));
+            this.socket = new Socket(serverAddr, Integer.parseInt(port));
             this.stream = new DataOutputStream(socket.getOutputStream());
         } catch (Exception e) {
             Log.e("TCP", "C: Error", e);
@@ -65,25 +64,6 @@ public class JoyStick extends AppCompatActivity {
                     x = js.getX();
                     y = js.getY();
                     int direction = js.get8Direction();
-                    if(direction == JoyStickClass.STICK_UP) {
-                        textView5.setText("Direction : Up");
-                    } else if(direction == JoyStickClass.STICK_UPRIGHT) {
-                        textView5.setText("Direction : Up Right");
-                    } else if(direction == JoyStickClass.STICK_RIGHT) {
-                        textView5.setText("Direction : Right");
-                    } else if(direction == JoyStickClass.STICK_DOWNRIGHT) {
-                        textView5.setText("Direction : Down Right");
-                    } else if(direction == JoyStickClass.STICK_DOWN) {
-                        textView5.setText("Direction : Down");
-                    } else if(direction == JoyStickClass.STICK_DOWNLEFT) {
-                        textView5.setText("Direction : Down Left");
-                    } else if(direction == JoyStickClass.STICK_LEFT) {
-                        textView5.setText("Direction : Left");
-                    } else if(direction == JoyStickClass.STICK_UPLEFT) {
-                        textView5.setText("Direction : Up Left");
-                    } else if(direction == JoyStickClass.STICK_NONE) {
-                        textView5.setText("Direction : Center");
-                    }
                 } else if(arg1.getAction() == MotionEvent.ACTION_UP) {
                     try {
                         stream.writeUTF("set /controls/flight/aileron " + x + "\r\n");

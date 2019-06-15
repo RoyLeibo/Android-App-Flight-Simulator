@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/iptAdress"
+        android:id="@+id/ipAddress"
         android:layout_width="230dp"
         android:layout_height="39dp"
         android:layout_marginStart="10dp"
@@ -56,26 +56,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iptAdress"
+        app:layout_constraintTop_toBottomOf="@+id/ipAddress"
         app:layout_constraintVertical_bias="0.804" />
 
     <TextView
-        android:id="@+id/ip"
-        android:layout_width="68dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="108dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="   IP:"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/ipAddress2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/port"
+        android:id="@+id/port_textBox"
         android:layout_width="68dp"
         android:layout_height="42dp"
         android:layout_marginStart="35dp"
@@ -87,7 +72,22 @@
         android:textSize="24sp"
         android:verticalScrollbarPosition="defaultPosition"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ip" />
+        app:layout_constraintTop_toBottomOf="@+id/ip_textBox" />
+
+    <TextView
+        android:id="@+id/ip_textBox"
+        android:layout_width="68dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="108dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="   IP:"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/ipAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/port"
@@ -105,7 +105,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/ip"
+        app:layout_constraintStart_toEndOf="@+id/ip_textBox"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
