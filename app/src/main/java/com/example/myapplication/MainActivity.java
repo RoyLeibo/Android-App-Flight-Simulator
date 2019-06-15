@@ -14,14 +14,15 @@ import java.net.Socket;
 
 public class MainActivity extends AppCompatActivity {
 
-    Socket socket;
-    DataOutputStream stream;
+   // Socket socket;
+    //DataOutputStream stream;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
 
-        Button connectButton = findViewById(R.id.connect);
+       /* Button connectButton = findViewById(R.id.connect);
         connectButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 EditText ip = findViewById(R.id.ipAddress2);
@@ -46,5 +47,18 @@ public class MainActivity extends AppCompatActivity {
         }
         catch (IOException e){}
         //}
+    }*/
+    public void connect(View view) {
+        EditText editTextIp =
+                (EditText) findViewById(R.id.iptAdress);
+        EditText editTextPort =
+                (EditText) findViewById(R.id.port);
+        Intent intent = new Intent(this,
+                JoyStick.class);
+        String msg2 = editTextIp.getText().toString();
+        String msg1 = editTextPort.getText().toString();
+        String msg = msg1 + "$" + msg2;
+        intent.putExtra("message", msg);
+        startActivity(intent);
     }
 }

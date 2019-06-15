@@ -8,12 +8,12 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/ipAddress"
+        android:id="@+id/iptAdress"
         android:layout_width="230dp"
         android:layout_height="39dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="108dp"
         android:layout_marginEnd="60dp"
         android:layout_marginRight="60dp"
         android:background="#FFF1F8F7"
@@ -21,15 +21,15 @@
         android:hapticFeedbackEnabled="false"
         android:hint="Please Enter Your port Address"
         android:inputType="textPersonName"
-        android:lineSpacingExtra="10sp"
 
+        android:lineSpacingExtra="10sp"
         android:textColorLink="#4D61C5"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
 
-        app:layout_constraintHorizontal_bias="0.722"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/port"
-        app:layout_constraintTop_toBottomOf="@+id/ipAddress2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <Button
@@ -48,6 +48,7 @@
         android:capitalize="sentences"
         android:clickable="false"
         android:lineSpacingExtra="12sp"
+        android:onClick="connect"
         android:text="Connect"
         android:textColorLink="@color/colorPrimary"
         android:textStyle="bold"
@@ -55,7 +56,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ipAddress"
+        app:layout_constraintTop_toBottomOf="@+id/iptAdress"
         app:layout_constraintVertical_bias="0.804" />
 
     <TextView
@@ -89,20 +90,21 @@
         app:layout_constraintTop_toBottomOf="@+id/ip" />
 
     <EditText
-        android:id="@+id/ipAddress2"
+        android:id="@+id/port"
         android:layout_width="230dp"
         android:layout_height="42dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="224dp"
         android:layout_marginEnd="60dp"
         android:layout_marginRight="60dp"
-        android:ems="10"
         android:background="#FFF1F8F7"
+        android:ems="10"
         android:hint="Please Enter Your IP Address"
         android:inputType="textPersonName"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/ip"
         app:layout_constraintTop_toTopOf="parent" />
 
