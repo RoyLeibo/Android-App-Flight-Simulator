@@ -33,69 +33,62 @@ public class JoyStick extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_joy_stick);
-        // Get
+        // Get intent
         Intent intent = getIntent();
         String msg = intent.getStringExtra("message");
+        // extract message from intent and split it
         int split = msg.indexOf('$');
         final String ip = msg.substring(0,split);
         final int port = Integer.parseInt(msg.substring(split + 1));
+        // create a connection to server thread
         this.connectionThread = new Thread(new Runnable() {
+            // override the run function in runnable
             public void run() {
                 try {
-                    //InetAddress serverAddr = InetAddress.getByName(ip);
+                    // connect to the server
                     socket = new Socket(ip, port);
+                    Thread.currentThread().interrupt();
                 } catch (Exception e) {
                     Log.e("TCP", "C: Error", e);
                 }
             }
         });
         this.connectionThread.start();
-        layout_joystick = (RelativeLayout)findViewById(R.id.layout_joystick);
 
-        js = new JoyStickClass(getApplicationContext(), layout_joystick, R.drawable.image_button);
-        js.setStickSize(150, 150);
-        js.setLayoutSize(500, 500);
-        js.setLayoutAlpha(150);
-        js.setStickAlpha(100);
-        js.setOffset(90);
-        js.setMinimumDistance(50);
-        layout_joystick.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View arg0, MotionEvent arg1) {
-                js.drawStick(arg1);
-                if (arg1.getAction() == MotionEvent.ACTION_DOWN
-                        || arg1.getAction() == MotionEvent.ACTION_MOVE) {
-                    Thread th = new Thread(new Runnable() {
-                        public void run() {
-                            x = js.getX();
-                            y = js.getY();
-                            int direction = js.get8Direction();
-                            try {
-                                stream = socket.getOutputStream();
-                                String str = "set /controls/flight/aileron " + x + "\r\n";
-                                String str1 ="set /controls/flight/elevator " + y + "\r\n";
-                                stream.write(str.getBytes());
-                                stream.flush();
-                                stream.write(str1.getBytes());
-                                stream.flush();
-                                Thread.currentThread().interrupt();
-                            }
-                            catch (IOException e){}
-                        }
-                    });
-                    th.start();
-                }
-                return true;
-            }
-        });
     }
 
+    // function that is called when the joystick is moving
+    public void onJoystickMoved(final float x, final float y) {
+        // create a new thread to send data to the server
+        Thread th = new Thread(new Runnable() {
+            public void run() {
+                try {
+                    // gets the output stream
+                    stream = socket.getOutputStream();
+                    // create the commands to the server
+                    String str = "set /controls/flight/aileron " + x + "\r\n";
+                    String str1 = "set /controls/flight/elevator " + y + "\r\n";
+                    // send each command to simulator
+                    stream.write(str.getBytes());
+                    stream.flush();
+                    stream.write(str1.getBytes());
+                    stream.flush();
+                    Thread.currentThread().interrupt();
+                } catch (IOException e) {
+                }
+            }
+        });
+        th.start();
+    }
+
+    // when the user exit the app
     public void onDestroy() {
         super.onDestroy();
         try {
+            // close socket
             this.socket.close();
         } catch (IOException e){
             Log.e("TCP", "C: Error closing the socket", e);
         }
-        this.connectionThread.interrupt();
     }
 }
