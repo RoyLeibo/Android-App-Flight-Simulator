@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 
@@ -25,7 +26,7 @@ public class JoyStick extends AppCompatActivity {
     double y;
     JoyStickClass js;
     Socket socket;
-    DataOutputStream stream;
+    OutputStream stream;
     Thread connectionThread;
 
     @SuppressLint("ClickableViewAccessibility")
@@ -41,9 +42,8 @@ public class JoyStick extends AppCompatActivity {
         this.connectionThread = new Thread(new Runnable() {
             public void run() {
                 try {
-                    InetAddress serverAddr = InetAddress.getByName(ip);
-                    socket = new Socket(serverAddr, port);
-                    stream = new DataOutputStream(socket.getOutputStream());
+                    //InetAddress serverAddr = InetAddress.getByName(ip);
+                    socket = new Socket(ip, port);
                 } catch (Exception e) {
                     Log.e("TCP", "C: Error", e);
                 }
@@ -70,8 +70,14 @@ public class JoyStick extends AppCompatActivity {
                             y = js.getY();
                             int direction = js.get8Direction();
                             try {
-                                stream.writeUTF("set /controls/flight/aileron " + x + "\r\n");
-                                stream.writeUTF("set /controls/flight/elevator " + y + "\r\n");
+                                stream = socket.getOutputStream();
+                                String str = "set /controls/flight/aileron " + x + "\r\n";
+                                String str1 ="set /controls/flight/elevator " + y + "\r\n";
+                                stream.write(str.getBytes());
+                                stream.flush();
+                                stream.write(str1.getBytes());
+                                stream.flush();
+                                Thread.currentThread().interrupt();
                             }
                             catch (IOException e){}
                         }
