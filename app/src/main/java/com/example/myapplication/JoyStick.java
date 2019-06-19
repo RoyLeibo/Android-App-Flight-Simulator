@@ -47,21 +47,25 @@ public class JoyStick extends AppCompatActivity {
                 } catch (Exception e) {
                     Log.e("TCP", "C: Error", e);
                 }
+            }
+        });
+        this.connectionThread.start();
+        layout_joystick = (RelativeLayout)findViewById(R.id.layout_joystick);
 
-                layout_joystick = (RelativeLayout)findViewById(R.id.layout_joystick);
-
-                js = new JoyStickClass(getApplicationContext(), layout_joystick, R.drawable.image_button);
-                js.setStickSize(150, 150);
-                js.setLayoutSize(500, 500);
-                js.setLayoutAlpha(150);
-                js.setStickAlpha(100);
-                js.setOffset(90);
-                js.setMinimumDistance(50);
-                layout_joystick.setOnTouchListener(new View.OnTouchListener() {
-                    public boolean onTouch(View arg0, MotionEvent arg1) {
-                        js.drawStick(arg1);
-                        if (arg1.getAction() == MotionEvent.ACTION_DOWN
-                                || arg1.getAction() == MotionEvent.ACTION_MOVE) {
+        js = new JoyStickClass(getApplicationContext(), layout_joystick, R.drawable.image_button);
+        js.setStickSize(150, 150);
+        js.setLayoutSize(500, 500);
+        js.setLayoutAlpha(150);
+        js.setStickAlpha(100);
+        js.setOffset(90);
+        js.setMinimumDistance(50);
+        layout_joystick.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View arg0, MotionEvent arg1) {
+                js.drawStick(arg1);
+                if (arg1.getAction() == MotionEvent.ACTION_DOWN
+                        || arg1.getAction() == MotionEvent.ACTION_MOVE) {
+                    Thread th = new Thread(new Runnable() {
+                        public void run() {
                             x = js.getX();
                             y = js.getY();
                             int direction = js.get8Direction();
@@ -71,12 +75,12 @@ public class JoyStick extends AppCompatActivity {
                             }
                             catch (IOException e){}
                         }
-                        return true;
-                    }
-                });
+                    });
+                    th.start();
+                }
+                return true;
             }
         });
-        this.connectionThread.start();
     }
 
     public void onDestroy() {
