@@ -18,7 +18,7 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 
-public class JoyStick extends AppCompatActivity {
+public class JoyStick extends AppCompatActivity implements JoyStickClass.JoystickListener {
 
     RelativeLayout layout_joystick;
     ImageView image_joystick, image_border;
