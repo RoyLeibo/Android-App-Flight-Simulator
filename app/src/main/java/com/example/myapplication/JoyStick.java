@@ -54,7 +54,6 @@ public class JoyStick extends AppCompatActivity {
             }
         });
         this.connectionThread.start();
-
     }
 
     // function that is called when the joystick is moving
