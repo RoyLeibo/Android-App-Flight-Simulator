@@ -1,30 +1,16 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.net.InetAddress;
 import java.net.Socket;
 
 public class JoyStick extends AppCompatActivity implements JoyStickClass.JoystickListener {
 
-    RelativeLayout layout_joystick;
-    ImageView image_joystick, image_border;
-    double x;
-    double y;
-    JoyStickClass js;
     Socket socket;
     OutputStream stream;
     Thread connectionThread;
